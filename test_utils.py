@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-""" Task 1 module"""
+"""A module for testing the utils module.
+"""
 import unittest
 from typing import Dict, Tuple, Union
 from unittest.mock import patch, Mock
@@ -13,13 +14,12 @@ from utils import (
 
 
 class TestAccessNestedMap(unittest.TestCase):
-    ''' Tests the access_nested_map function '''
+    """Tests the `access_nested_map` function."""
     @parameterized.expand([
         ({"a": 1}, ("a",), 1),
         ({"a": {"b": 2}}, ("a",), {"b": 2}),
         ({"a": {"b": 2}}, ("a", "b"), 2),
     ])
-
     def test_access_nested_map(
             self,
             nested_map: Dict,
@@ -33,8 +33,7 @@ class TestAccessNestedMap(unittest.TestCase):
         ({}, ("a",), KeyError),
         ({"a": 1}, ("a", "b"), KeyError),
     ])
-
-    def test_access_nested_map_execution(
+    def test_access_nested_map_exception(
             self,
             nested_map: Dict,
             path: Tuple[str],
@@ -46,7 +45,7 @@ class TestAccessNestedMap(unittest.TestCase):
 
 
 class TestGetJson(unittest.TestCase):
-    '''Tests a function in utils'''
+    """Tests the `get_json` function."""
     @parameterized.expand([
         ("http://example.com", {"payload": True}),
         ("http://holberton.io", {"payload": False}),
@@ -64,7 +63,7 @@ class TestGetJson(unittest.TestCase):
 
 
 class TestMemoize(unittest.TestCase):
-    '''Tests the memoize function'''
+    """Tests the `memoize` function."""
     def test_memoize(self) -> None:
         """Tests `memoize`'s output."""
         class TestClass:
@@ -83,3 +82,4 @@ class TestMemoize(unittest.TestCase):
             self.assertEqual(test_class.a_property(), 42)
             self.assertEqual(test_class.a_property(), 42)
             memo_fxn.assert_called_once()
+            
